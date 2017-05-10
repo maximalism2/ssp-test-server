@@ -12,7 +12,7 @@ router.get('/', ctx => {
     ctx.body = index;
 });
 
-router.all('/test', async ctx => {
+router.all('/test', function(ctx) {
     ctx.body = true;
     io.emit('test-request-received', {
         request: ctx.request,
