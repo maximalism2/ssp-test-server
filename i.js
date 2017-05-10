@@ -20,5 +20,7 @@ app.use(router.routes());
 var server = require('http').Server(app.callback()),
     io = require('socket.io')(server);
 
-server.listen(80);
-console.info('Started on 80 port');
+
+var port = process.env.PORT || 8080;
+server.listen(port);
+console.info('Started on ' + port + ' port');
