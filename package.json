@@ -1,0 +1,27 @@
+{
+  "name": "ssp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "koa": "^2.2.0",
+    "koa-router": "^7.1.1",
+    "koa-static": "^3.0.0",
+    "koa-views": "^6.0.2",
+    "socket.io": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/necinc/ssp-test-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/necinc/ssp-test-server/issues"
+  },
+  "homepage": "https://github.com/necinc/ssp-test-server#readme"
+}

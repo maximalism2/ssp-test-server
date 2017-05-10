@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            color: #353535;
+            background-image: linear-gradient(to bottom, #3a6186 0%, #89253e 100%);
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+        .container {
+            max-width: 960px;
+            margin: auto;
+            width: 90%;
+            background-color: #f5f5f5;
+            padding: 20px;
+            font-weight: 400;
+            border-radius: 5px;
+        }
+
+        p {
+            color: #874343;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        pre {
+            background: white;
+            padding: 0 20px;
+            min-height: 300px;
+        }
+
+        #log > div {
+            padding-bottom: 20px;
+            border-bottom: 1px solid #874343;
+            overflow-x: auto;
+            transition: 1s;
+            background-color: white;
+        }
+
+        .new {
+            background-color: #ffd60f !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Send test requests on <a href="" target="_blank" id="titleLink"></a> to see them in log below!</h1>
+
+        <pre><code id="log">
+        </code></pre>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+<script>
+    var link = document.getElementById('titleLink');
+    link.innerText = location.href + 'test';
+    link.href = location.href + 'test';
+
+    function getCurrentDate() {
+        var date = new Date();
+        var h = date.getHours(),
+            m = date.getMinutes(),
+            s = date.getSeconds(),
+            ml = date.getMilliseconds();
+
+        return h + ':' + m + ':' + s + '.' + ml;
+    }
+
+    var log = document.getElementById('log');
+    var socket = io();
+    socket.on('test-request-received', function (data) {
+        var time = document.createElement('P');
+        time.innerText = getCurrentDate();
+
+        var div = document.createElement('DIV');
+        div.className = 'new';
+        div.innerText = JSON.stringify(data, null, "\t");
+        div.insertBefore(time, div.firstChild);
+        log.insertBefore(div, log.firstChild);
+        setTimeout(function() {
+            div.className = '';
+        }, 200);
+
+        console.log(new Date().toString(), data);
+    });
+</script>
+</body>
+</html>
