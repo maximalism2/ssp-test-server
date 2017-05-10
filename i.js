@@ -1,6 +1,8 @@
 var koa = require('koa'),
-    router = require('koa-router')();
-var fs = require('fs');
+    router = require('koa-router')(),
+    fs = require('fs'),
+    bodyParser = require('koa-bodyparser');
+
 
 var index = fs.readFileSync('./s.html').toString();
 
@@ -10,12 +12,19 @@ router.get('/', ctx => {
     ctx.body = index;
 });
 
-router.all('/test', function (ctx) {
+router.all('/test', async ctx => {
     ctx.body = true;
-    io.emit('test-request-received', ctx.request);
+    io.emit('test-request-received', {
+        request: ctx.request,
+        body: ctx.request.body,
+    });
 });
 
+app.use(bodyParser({
+    enableTypes: ['text', 'json', 'form'],
+}));
 app.use(router.routes());
+
 
 var server = require('http').Server(app.callback()),
     io = require('socket.io')(server);
