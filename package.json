@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/necinc/ssp-test-server/issues"
   },
-  "homepage": "https://github.com/necinc/ssp-test-server#readme"
+  "homepage": "https://github.com/necinc/ssp-test-server#readme",
+  "engines": {
+    "node": "7.10.0"
+  }
 }
