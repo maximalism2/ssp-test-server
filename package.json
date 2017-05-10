@@ -14,7 +14,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node i.js"
+    "start": "node i.js",
+    "deploy": "git push heroku master"
   },
   "repository": {
     "type": "git",
